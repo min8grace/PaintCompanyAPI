@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "XaESKRCEzrr9Q/T3hXxI8wys5IAOq8P0wF8bs2kqeBamH/T8RdrCu4m3RAIo3Rfhj7m+OcVY1p8WRzwCRtEEew==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\min8g\\source\\repos\\PaintStockStatusAPI\\PaintStockStatusAPI\\PaintStockStatusAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\min8g\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\min8g\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\min8g\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\min8g\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\min8g\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\min8g\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
