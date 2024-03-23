@@ -5,10 +5,27 @@ namespace PaintStockStatusAPI.Models
     public class PaintInventory
     {
         [Key]
-        public PaintColourType Color { get; set; } = PaintColourType.Blue;
+        public PaintColourType Colour { get; set; }
         public int Quantity { get; set; }
 
-        // Navigation property for relationship with PaintStatus
-        public PaintStatus PaintStatus { get; set; }
+        public PaintStatusType GetPaintStatus
+        {
+            get
+            {
+                if (Quantity == 0)
+                {
+                    return PaintStatusType.OutOfStock;
+                }
+                else if (Quantity <= 200)
+                {
+                    return PaintStatusType.RunningLow;
+                }
+                else
+                {
+                    return PaintStatusType.Available;
+                }
+            }
+        }
+
     }
 }

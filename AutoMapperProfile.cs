@@ -7,7 +7,8 @@ namespace PaintStockStatusAPI
     {
         public AutoMapperProfile()
         {
-            CreateMap<Models.PaintStatus, GetPaintStatusDto>();
+            CreateMap<Models.PaintInventory, GetPaintInventoryDto>();
+            CreateMap<UpdatePaintInventoryDto, Models.PaintInventory>();
         }
     }
 }
