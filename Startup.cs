@@ -60,12 +60,10 @@ namespace PaintStockStatusAPI
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.WithOrigins(
-                    "https://localhost:5001"
+                   "https://paintcompanyui.onrender.com/"
+                   ,"https://paintcompanyui.onrender.com"
+                    , "https://localhost:5001"
                     , "http://localhost:5001"
-                    , "https://localhost:3000"
-                    , "http://localhost:3000"
-                    , "https://localhost:3001"
-                    , "http://localhost:3001"
                     )
                        .AllowAnyMethod()
                        .AllowAnyHeader();
