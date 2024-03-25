@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using PaintStockStatusAPI.Dtos;
+using PaintStockStatusAPI.Dtos.User;
+using PaintStockStatusAPI.Dtos.UserRole;
 
 namespace PaintStockStatusAPI
 {
@@ -9,6 +11,10 @@ namespace PaintStockStatusAPI
         {
             CreateMap<Models.PaintInventory, GetPaintInventoryDto>();
             CreateMap<UpdatePaintInventoryDto, Models.PaintInventory>();
+            CreateMap<Models.User, GetUserDto>();
+            CreateMap<Models.UserRole, GetUserRoleDto>();
+            CreateMap<Models.UserPermission, GetUserPermissionDto>();
+            CreateMap<GetUserPermissionDto, Models.UserPermission>();
         }
     }
 }

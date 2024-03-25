@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace PaintStockStatusAPI.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class PaintInventoryController : ControllerBase
     {
         private readonly IPaintInventoryService _paintInventoryService;
@@ -16,13 +18,13 @@ namespace PaintStockStatusAPI.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllPaints()
         {
             return Ok(await _paintInventoryService.GetAllPaints());
         }
 
         [HttpGet]
-        [Route("{ID}")]
+        [Route("GetById/{ID}")]
         public async Task<IActionResult> GetPaintInventory(int ID)
         {
             return Ok(await _paintInventoryService.GetPaintInventoryById(ID));
@@ -31,7 +33,7 @@ namespace PaintStockStatusAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdatePaintInventoryByID(UpdatePaintInventoryDto updatePaintInventoryDto)
         {
-            ServiceResponse<UpdatePaintInventoryDto> response = await _paintInventoryService.UpdatePaintInventory(updatePaintInventoryDto);
+            ServiceResponse<GetPaintInventoryDto> response = await _paintInventoryService.UpdatePaintInventory(updatePaintInventoryDto);
             if (response.Data == null)
             {
                 return NotFound(response);

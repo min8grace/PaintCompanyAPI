@@ -9,6 +9,6 @@ namespace PaintStockStatusAPI.Services
     {        
         Task<ServiceResponse<List<GetPaintInventoryDto>>> GetAllPaints();
         Task<ServiceResponse<GetPaintInventoryDto>> GetPaintInventoryById(int ID);
-        Task<ServiceResponse<UpdatePaintInventoryDto>> UpdatePaintInventory(UpdatePaintInventoryDto updatePaintInventoryDto);
+        Task<ServiceResponse<GetPaintInventoryDto>> UpdatePaintInventory(UpdatePaintInventoryDto updatePaintInventoryDto);
     }
 }

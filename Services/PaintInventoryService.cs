@@ -15,10 +15,10 @@ namespace PaintStockStatusAPI.Services
     {
         private readonly IMapper _mapper;
         private readonly DataContext _context;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
-        public PaintInventoryService(IMapper mapper, DataContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public PaintInventoryService(IMapper mapper, DataContext context, IHttpContextAccessor httpContextAccessor)
         {
-            //_httpContextAccessor = httpContextAccessor; IHttpContextAccessor httpContextAccessor
+            _httpContextAccessor = httpContextAccessor; 
             _context = context;
             _mapper = mapper;
         }
@@ -47,7 +47,7 @@ namespace PaintStockStatusAPI.Services
             try
             {
                 PaintInventory dbPaintStatus = await _context.PaintInventory.FirstOrDefaultAsync(o => (int)o.Colour == (int)updatePaintInventoryDto.Colour);
-                dbPaintStatus.Quantity = dbPaintStatus.Quantity;
+                dbPaintStatus.Quantity = updatePaintInventoryDto.Quantity;
 
                 _context.PaintInventory.Update(dbPaintStatus);
                 await _context.SaveChangesAsync();
