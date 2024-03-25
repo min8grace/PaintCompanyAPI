@@ -5,10 +5,10 @@ namespace PaintStockStatusAPI.Models
 {
     public enum RoleName
     {
-        Viewer,
-        Manager,
-        Painter,
-        Admin
+        Viewer =1,
+        Manager =2,
+        Painter =3,
+        Admin =4,
     }
 
  

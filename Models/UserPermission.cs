@@ -5,9 +5,9 @@ namespace PaintStockStatusAPI.Models
 {
     public enum PermissionType
     {
-        ViewInventory,
-        UpdateInventory,
-        ManageUsers,
+        ViewInventory = 1,
+        UpdateInventory = 2,
+        ManageUsers =3 ,
     }
 
 

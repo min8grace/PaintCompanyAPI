@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PaintStockStatusAPI.Dtos;
 using PaintStockStatusAPI.Models;
 using PaintStockStatusAPI.Services;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaintStockStatusAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class PaintInventoryController : ControllerBase
