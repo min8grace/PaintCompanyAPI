@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PaintStockStatusAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserRoleController : ControllerBase
