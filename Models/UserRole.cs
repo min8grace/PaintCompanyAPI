@@ -3,27 +3,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaintStockStatusAPI.Models
 {
-    public enum UserRoleName
+    public enum RoleName
     {
-        PaintStatusViewer,
+        Viewer,
         Manager,
         Painter,
         Admin
     }
 
-    public enum UserPermissionType
-    {
-        ViewInventory,
-        UpdateInventory,
-        Order,
-        ManageUsers,
-    }
-
+ 
     public class UserRole
     {
         [Key]
-        public int RoleId { get; set; }
-        public UserRoleName RoleName { get; set; }
-        public UserPermissionType Permissions { get; set; }
+        public int RoleId { get; set; } // Primary key
+        public string RoleName { get; set; }
+        public List<UserRolePermission> UserRolePermissions { get; set; } // Navigation property for many-to-many relationship
+
     }
 }

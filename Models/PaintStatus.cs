@@ -20,10 +20,10 @@ namespace PaintStockStatusAPI.Models
         Purple = 5
     }
 
-    public class PaintStatus
-    {
-        [Key]
-        public PaintColourType Color { get; set; } = PaintColourType.Blue;
-        public PaintStatusType Status { get; set; } = PaintStatusType.Available;
-    }
+    //public class PaintStatus
+    //{
+    //    [Key]
+    //    public PaintColourType Color { get; set; } = PaintColourType.Blue;
+    //    public PaintStatusType Status { get; set; } = PaintStatusType.Available;
+    //}
 }
