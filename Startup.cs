@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,7 @@ using PaintStockStatusAPI.Data;
 using PaintStockStatusAPI.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,9 +39,9 @@ namespace PaintStockStatusAPI
             services.AddDbContext<DataContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
-            services.AddTransient<IPaintInventoryService, PaintInventoryService>();
+            services.AddScoped<IPaintInventoryService, PaintInventoryService>();
             //services.AddTransient<IOrderService, OrderService>();
-            services.AddTransient<IUserRoleService, UserRoleService>();
+            services.AddScoped<IUserRoleService, UserRoleService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -52,22 +54,36 @@ namespace PaintStockStatusAPI
                     ValidateAudience = false
                 };
             });
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaintStockStatusAPI", Version = "v1" });
-            });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.WithOrigins(
-                   "https://paintcompanyui.onrender.com/"
-                   ,"https://paintcompanyui.onrender.com"
-                    , "https://localhost:5001"
-                    , "http://localhost:5001"
+                      "https://paintcompanyui.onrender.com"
+                    , "https://www.paintcompanyui.onrender.com"
+                    , "https://gracewaychurch.xyz"
+                    , "https://www.gracewaychurch.xyz"
+                    , "http://localhost:3000"
+                    , "https://localhost:3000"
+                    , "http://localhost:3001"
+                    , "https://localhost:3001"
                     )
                        .AllowAnyMethod()
                        .AllowAnyHeader();
+                //.AllowCredentials();
             }));
+            services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo(@"c:\PATH TO COMMON KEY RING FOLDER"))
+                .SetApplicationName("SharedCookieApp");
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Domain = ".gracewaychurch.xyz";
+                options.Cookie.Name = "..SharedCookie";
+                options.Cookie.Path = "/";
+            });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaintStockStatusAPI", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,7 +96,7 @@ namespace PaintStockStatusAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaintStockStatusAPI v1"));
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 

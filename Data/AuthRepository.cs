@@ -26,11 +26,8 @@ namespace PaintStockStatusAPI.Data
         {
             ServiceResponse<string> response = new ServiceResponse<string>();
             User user = await _context.User.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(username.ToLower()));
-            if (user.IsActive == false) {
-                response.Success = false;
-                response.Message = "Inactive User";
-            }
-            else if (user == null)
+
+            if (user == null)
             {
                 response.Success = false;
                 response.Message = "User not found.";
@@ -39,6 +36,11 @@ namespace PaintStockStatusAPI.Data
             {
                 response.Success = false;
                 response.Message = "Wrong password.";
+            }
+            else if (user.IsActive == false)
+            {
+                response.Success = false;
+                response.Message = "Inactive User";
             }
             else
             {
